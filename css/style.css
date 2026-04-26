@@ -2312,29 +2312,20 @@ body.is-resizing .gallery-track {
         pointer-events: none;
     }
 
-    .premium-menu-section .menu-card-title {
-        font-size: 1.55rem;
-        line-height: 1.08;
-        margin-bottom: 0.45rem;
-    }
-
-    .premium-menu-section .menu-card-desc,
-    .premium-menu-section .menu-card-feature,
-    .premium-menu-section .menu-card-feature-text,
-    .premium-menu-section .menu-card-detail-link .fa-search-plus {
+    .premium-menu-section .menu-card-content > :not(.menu-card-cta) {
         display: none;
     }
 
     .premium-menu-section .menu-card-detail-link {
         display: inline-flex;
         align-items: center;
-        gap: 0.45rem;
-        font-size: 0.92rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
+        gap: 0.55rem;
+        font-size: 1.04rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        margin-top: 0.4rem;
-        padding: 0.45rem 0.75rem;
+        margin-top: 0;
+        padding: 0.55rem 0.85rem;
         border-radius: 999px;
         background: rgba(212, 175, 55, 0.96);
         color: #2a1a14;
@@ -2343,16 +2334,24 @@ body.is-resizing .gallery-track {
     }
 
     .premium-menu-section .menu-card-cta {
-        margin-top: 0.35rem;
+        margin-top: 0;
         width: fit-content;
-        line-height: 1.2;
+        line-height: 1.3;
+        align-self: flex-start;
     }
 
-    .premium-menu-section .menu-card-badge,
-    .premium-menu-section .menu-card-content .inline-block {
-        font-size: 0.68rem;
-        padding: 0.3rem 0.6rem;
-        margin-bottom: 0.4rem;
+    .premium-menu-section .menu-card-detail-link .fa-search-plus {
+        display: inline-block;
+    }
+
+    .premium-menu-section .card-3d .menu-card-content {
+        background: linear-gradient(
+            to top,
+            rgba(20, 12, 8, 0.72) 0%,
+            rgba(20, 12, 8, 0.40) 22%,
+            rgba(20, 12, 8, 0.08) 45%,
+            rgba(20, 12, 8, 0.00) 65%
+        );
     }
 
     .menu-modal-content,

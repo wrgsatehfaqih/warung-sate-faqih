@@ -1,12 +1,17 @@
-let currentLang = localStorage.getItem('selectedLang') || 'id';
+let currentLang = localStorage.getItem('siteLang') || localStorage.getItem('selectedLang') || 'id';
 const i18nHtmlKeys = new Set(['nostalgia_desc', 'rev_5', 'footer_copyright']);
+let languageSwitchTimer;
 
-function updateLangButton(activeBtn, inactiveBtn) {
-    activeBtn.classList.add('bg-brand-orange', 'text-white', 'shadow-sm');
-    activeBtn.classList.remove('text-brand-dark', 'hover:text-brand-orange');
+function updateLanguageButtons(lang) {
+    document.querySelectorAll('.language-toggle').forEach(toggle => {
+        toggle.dataset.active = lang;
+    });
 
-    inactiveBtn.classList.remove('bg-brand-orange', 'text-white', 'shadow-sm');
-    inactiveBtn.classList.add('text-brand-dark', 'hover:text-brand-orange');
+    document.querySelectorAll('.language-btn, .lang-btn').forEach(btn => {
+        const isActive = btn.dataset.lang === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+    });
 }
 
 function setTranslatedContent(el, value) {
@@ -32,33 +37,15 @@ function setTranslatedContent(el, value) {
     el.textContent = value;
 }
 
-function setLang(lang) {
+function applyLanguage(lang) {
     currentLang = lang;
 
-    // simpan bahasa terakhir
+    localStorage.setItem('siteLang', lang);
     localStorage.setItem('selectedLang', lang);
-
-    const btnId = document.getElementById('btn-id');
-    const btnEn = document.getElementById('btn-en');
-
-    if (btnId && btnEn) {
-        if (lang === 'id') {
-            updateLangButton(btnId, btnEn);
-        } else {
-            updateLangButton(btnEn, btnId);
-        }
-    }
-
-    const btnIdMob = document.getElementById('btn-id-mob');
-    const btnEnMob = document.getElementById('btn-en-mob');
-
-    if (btnIdMob && btnEnMob) {
-        if (lang === 'id') {
-            updateLangButton(btnIdMob, btnEnMob);
-        } else {
-            updateLangButton(btnEnMob, btnIdMob);
-        }
-    }
+    document.documentElement.lang = lang;
+    document.body.classList.toggle('lang-id', lang === 'id');
+    document.body.classList.toggle('lang-en', lang === 'en');
+    updateLanguageButtons(lang);
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -101,9 +88,52 @@ function setLang(lang) {
 
         typeWriter();
     }
+
+    window.handleResponsiveRefresh?.();
+}
+
+function setLang(lang, options = {}) {
+    if (!dict[lang]) return;
+
+    const shouldAnimate = options.animate !== false && document.readyState !== 'loading';
+
+    clearTimeout(languageSwitchTimer);
+
+    if (!shouldAnimate) {
+        document.body.classList.remove('lang-switching');
+        applyLanguage(lang);
+        return;
+    }
+
+    document.body.classList.add('lang-switching');
+
+    languageSwitchTimer = setTimeout(() => {
+        applyLanguage(lang);
+        document.body.classList.remove('lang-switching');
+    }, 180);
+}
+
+function switchLanguage(lang) {
+    setLang(lang);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('selectedLang') || 'id';
-    setLang(savedLang);
+    const savedLang = localStorage.getItem('siteLang') || localStorage.getItem('selectedLang') || 'id';
+    setLang(savedLang, { animate: false });
+
+    document.querySelectorAll('.language-btn, .lang-btn').forEach(btn => {
+        if (btn.dataset.langListenerAttached === 'true') return;
+        btn.dataset.langListenerAttached = 'true';
+
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            if (!lang || lang === currentLang) {
+                updateLanguageButtons(currentLang);
+                return;
+            }
+
+            updateLanguageButtons(lang);
+            setLang(lang);
+        });
+    });
 });

@@ -118,7 +118,7 @@
 
     <!-- Modal / Lightbox -->
     <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden bg-brand-dark/95 flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300" onclick="closeModal()">
-        <div id="modal-dialog" class="bg-brand-cream max-w-6xl w-full max-h-[90vh] rounded-xl overflow-hidden shadow-2xl grid xl:grid-cols-[58%_42%] max-xl:flex max-xl:flex-col relative" onclick="event.stopPropagation()">
+        <div id="modal-dialog" class="modal-3d bg-brand-cream max-w-6xl w-full max-h-[90vh] rounded-xl overflow-hidden shadow-2xl grid xl:grid-cols-[58%_42%] max-xl:flex max-xl:flex-col relative" onclick="event.stopPropagation()">
             <button onclick="closeModal()" class="absolute top-2 right-4 text-gray-400 hover:text-brand-orange text-4xl focus:outline-none z-[101] transition-colors">&times;</button>
             <div id="modal-image-wrapper" class="w-full h-auto bg-brand-dark flex items-center justify-center overflow-hidden gallery-modal-image-wrapper">
                 <img id="modal-img" src="" alt="Detail Image" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full max-h-[90vh] object-cover object-center">
@@ -135,7 +135,7 @@
 
     <!-- Header & Navbar Utama (Diperbarui dengan Top Bar) -->
 <header id="main-header" class="fixed w-full z-50 transition-transform duration-300">
-    <nav class="w-full bg-brand-cream/95 backdrop-blur-md border-b border-brand-gold/20 shadow-sm transition-all duration-300" id="navbar">
+    <nav class="site-navbar navbar-top w-full bg-brand-cream/95 backdrop-blur-md border-b border-brand-gold/20 shadow-sm transition-all duration-300" id="navbar">
         <div class="max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
 
             <!-- Desktop / Tablet Layout -->
@@ -178,7 +178,7 @@
 
                 <!-- TENGAH: LOGO -->
                 <div class="flex items-center justify-center px-3 lg:px-4">
-                    <a href="#home" class="transform hover:scale-105 transition-transform duration-300">
+                    <a href="#home" class="nav-link nav-logo-link transform hover:scale-105 transition-transform duration-300" aria-label="Beranda">
                         <img id="nav-logo"
                              src="assets/images/logo.png?v=2"
                              alt="Logo Warung Sate H. Faqih 1"
@@ -208,11 +208,12 @@
                     </div>
 
                     <!-- Language Switcher -->
-                    <div class="flex items-center bg-white rounded-full p-0.5 border border-brand-brown/20 shadow-sm shrink-0 ml-4">
-                        <button onclick="setLang('id')" id="btn-id" class="px-3 lg:px-4 py-1 text-[10px] lg:text-[11px] font-bold rounded-full bg-brand-orange text-white transition-all">
+                    <div class="language-toggle language-switcher shrink-0 ml-4" role="group" aria-label="Language switcher" data-active="id">
+                        <span class="language-toggle-indicator" aria-hidden="true"></span>
+                        <button id="btn-id" data-lang="id" type="button" class="language-btn lang-btn active" aria-pressed="true">
                             ID
                         </button>
-                        <button onclick="setLang('en')" id="btn-en" class="px-3 lg:px-4 py-1 text-[10px] lg:text-[11px] font-bold rounded-full text-brand-dark hover:text-brand-orange transition-all">
+                        <button id="btn-en" data-lang="en" type="button" class="language-btn lang-btn" aria-pressed="false">
                             EN
                         </button>
                     </div>
@@ -226,7 +227,7 @@
                 </button>
 
                 <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center pointer-events-auto z-50">
-                    <a href="#home">
+                    <a href="#home" class="nav-link nav-logo-link" aria-label="Beranda">
                         <img id="nav-logo-mob"
                              src="assets/images/logo.png?v=2"
                              alt="Logo H. Faqih 1"
@@ -235,14 +236,15 @@
                 </div>
 
                 <div class="flex items-center z-10">
-                    <div class="flex items-center bg-white rounded-full p-1 border border-brand-brown/20 shadow-sm">
-                        <button onclick="setLang('id')" id="btn-id-mob"
-                            class="px-2 py-1 text-[10px] font-bold rounded-full bg-brand-orange text-white transition-all duration-300">
+                    <div class="language-toggle language-switcher" role="group" aria-label="Language switcher" data-active="id">
+                        <span class="language-toggle-indicator" aria-hidden="true"></span>
+                        <button id="btn-id-mob" data-lang="id" type="button"
+                            class="language-btn lang-btn active" aria-pressed="true">
                             ID
                         </button>
 
-                        <button onclick="setLang('en')" id="btn-en-mob"
-                            class="px-2 py-1 text-[10px] font-bold rounded-full text-brand-dark hover:text-brand-orange transition-all duration-300">
+                        <button id="btn-en-mob" data-lang="en" type="button"
+                            class="language-btn lang-btn" aria-pressed="false">
                             EN
                         </button>
                     </div>
@@ -290,7 +292,7 @@
         <img 
             src="assets/images/Warung.png"
             alt="Suasana Warung Sate H. Faqih 1"
-            class="hero-bg hero-bg-warung w-full h-full object-cover"
+            class="hero-bg hero-bg-warung scroll-depth w-full h-full object-cover"
         >
     </div>
 
@@ -302,7 +304,7 @@
         <div class="hero-content-inner">
 
             <!-- Kotak transparan hanya di bagian tulisan -->
-            <div class="hero-card text-left">
+            <div class="hero-card glass-3d text-left">
 
                 <span class="hero-badge text-brand-orange font-bold uppercase block" data-i18n="hero_badge_0">
                     Warisan Lintas Generasi
@@ -337,7 +339,7 @@
         <img 
             src="assets/images/Sate Kambing (2).png"
             alt="Sate Kambing empuk khas Warung Sate H. Faqih 1"
-            class="hero-bg hero-bg-sate w-full h-full object-cover"
+            class="hero-bg hero-bg-sate scroll-depth w-full h-full object-cover"
         >
     </div>
 
@@ -349,7 +351,7 @@
         <div class="hero-content-inner">
             
             <!-- Kotak transparan hanya di bagian tulisan -->
-            <div class="hero-card text-left">
+            <div class="hero-card glass-3d text-left">
 
                 <span class="hero-badge text-brand-orange font-bold uppercase block" data-i18n="hero_badge_1">
                     Cita Rasa Autentik
@@ -383,7 +385,7 @@
         <img 
             src="assets/images/Gule Kambing.png"
             alt="Gule Kambing H. Faqih 1 dengan kuah medok kaya rempah"
-            class="hero-bg hero-bg-gule w-full h-full object-cover"
+            class="hero-bg hero-bg-gule scroll-depth w-full h-full object-cover"
         >
     </div>
 
@@ -395,7 +397,7 @@
         <div class="hero-content-inner">
 
             <!-- Kotak transparan hanya di bagian tulisan -->
-            <div class="hero-card text-left">
+            <div class="hero-card glass-3d text-left">
 
                 <span class="hero-badge text-brand-orange font-bold uppercase block" data-i18n="hero_badge_2">
                     Kuah Medok Kaya Rempah
@@ -432,7 +434,7 @@
     </section>
 
     <!-- Nostalgia & About Section -->
-    <section id="about" class="py-10 lg:py-12 bg-brand-light relative">
+    <section id="about" class="premium-section py-10 lg:py-12 bg-brand-light relative">
         <!-- Ruang Memori (Nostalgia) -->
         <div class="w-full px-4 sm:px-8 lg:px-16 xl:px-24 text-center reveal border-b border-brand-gold/10 pb-8 mb-8">
             <i class="fa-solid fa-heart block text-brand-orange text-3xl mb-5 opacity-90 leading-none"></i>
@@ -477,10 +479,12 @@
                 </div>
                 <h4 class="font-bold text-brand-dark text-base md:text-lg" data-i18n="fac_4">Pelayanan Ramah</h4>
             </div>
+            </div>
+        </div>
     </section>
 
     <!-- Signature Menu Section -->
-    <section id="menu" class="py-12 lg:py-16 bg-white relative">
+    <section id="menu" class="premium-section premium-menu-section py-12 lg:py-16 bg-white relative">
         <div class="w-full px-4 sm:px-8 lg:px-16 xl:px-24">
             <div class="text-center mb-8 reveal">
                 <span class="text-brand-orange font-medium tracking-widest text-sm uppercase" data-i18n="menu_subtitle">Warisan Rasa</span>
@@ -492,59 +496,59 @@
             <!-- Grid Menu Utama -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 mb-8">
                 <!-- Menu 1 -->
-                <div class="reveal relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500" onclick="openModal('assets/images/Sate Kambing (3).png', 'menu_1_title', 'menu_1_desc', 'menu_1_extra')">                    <!-- Alt Text dioptimasi -->
-                     <img loading="lazy" src="assets/images/Sate Kambing (3).png" alt="Menu Sate Kambing Empuk Jombang" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="reveal reveal-3d card-3d relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500" onclick="openModal('assets/images/Sate Kambing (3).png', 'menu_1_title', 'menu_1_desc', 'menu_1_extra')">                    <!-- Alt Text dioptimasi -->
+                     <img loading="lazy" src="assets/images/Sate Kambing (3).png" alt="Menu Sate Kambing Empuk Jombang" class="menu-card-image absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="menu-card-content absolute inset-0 p-6 lg:p-8 flex flex-col justify-center w-[95%] sm:w-[85%] transform -translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                         <p class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-1 lg:mb-2" data-i18n="menu_type_sate">Aneka Sate</p>
-                        <h3 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_1_title">Sate Kambing</h3>
+                        <h3 class="menu-card-title font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_1_title">Sate Kambing</h3>
                         <span class="inline-block px-3 py-1 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider rounded-md mb-3 self-start shadow-sm" data-i18n="menu_badge_best">Best Seller</span>
                         <p class="menu-card-desc text-brand-cream/90 pb-1" data-i18n="menu_1_short">Potongan daging kambing  pilihan yang sangat empuk, dibakar sempurna di atas arang.</p>
                         <p class="menu-card-feature text-brand-gold"><i class="fas fa-check-circle text-white opacity-80"></i> <span class="menu-card-feature-text" data-i18n="menu_1_char">Tanpa prengus, disajikan dengan kecap & irisan bawang segar.</span></p>
-                        <div class="menu-card-detail-link flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
+                        <div class="menu-card-detail-link menu-card-cta flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
                     </div>
                 </div>
 
                 <!-- Menu 2 -->
-                <div class="reveal delay-100 relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500" onclick="openModal('assets/images/Sate Ayam(2).png', 'menu_2_title', 'menu_2_desc', 'menu_2_extra')">
+                <div class="reveal delay-100 reveal-3d card-3d relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500" onclick="openModal('assets/images/Sate Ayam(2).png', 'menu_2_title', 'menu_2_desc', 'menu_2_extra')">
                     <!-- Alt Text dioptimasi -->
-                    <img loading="lazy" src="assets/images/Sate Ayam(2).png" alt="Menu Sate Ayam Bumbu Kacang Legendaris" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img loading="lazy" src="assets/images/Sate Ayam(2).png" alt="Menu Sate Ayam Bumbu Kacang Legendaris" class="menu-card-image absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="menu-card-content absolute inset-0 p-6 lg:p-8 flex flex-col justify-center w-[95%] sm:w-[85%] transform -translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                         <p class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-1 lg:mb-2" data-i18n="menu_type_sate">Aneka Sate</p>
-                        <h3 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_2_title">Sate Ayam Legendaris</h3>
+                        <h3 class="menu-card-title font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_2_title">Sate Ayam Legendaris</h3>
                         <span class="inline-block px-3 py-1 bg-brand-gold text-brand-dark text-[10px] font-bold uppercase tracking-wider rounded-md mb-3 self-start shadow-sm" data-i18n="menu_badge_family">Favorite Keluarga</span>
                         <p class="menu-card-desc text-brand-cream/90 pb-1" data-i18n="menu_2_short">Daging ayam tebal dan juicy, dilumuri bumbu kacang rahasia yang legit dan meresap hingga ke dalam serat daging.</p>
                         <p class="menu-card-feature text-brand-gold"><i class="fas fa-check-circle text-white opacity-80"></i> <span class="menu-card-feature-text" data-i18n="menu_2_char">Bumbu kacang ditumbuk manual, tekstur autentik.</span></p>
-                        <div class="menu-card-detail-link flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
+                        <div class="menu-card-detail-link menu-card-cta flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
                     </div>
                 </div>
 
                 <!-- Menu 3 -->
-                <div class="reveal relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500"onclick="openModal('assets/images/gule-kambing-2.png', 'menu_3_title', 'menu_3_desc', 'menu_3_extra')">
-                <img loading="lazy" src="assets/images/gule-kambing-2.png" alt="Gule Kambing" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="reveal reveal-3d card-3d relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500" onclick="openModal('assets/images/gule-kambing-2.png', 'menu_3_title', 'menu_3_desc', 'menu_3_extra')">
+                <img loading="lazy" src="assets/images/gule-kambing-2.png" alt="Gule Kambing" class="menu-card-image absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="menu-card-content absolute inset-0 p-6 lg:p-8 flex flex-col justify-center w-[95%] sm:w-[85%] transform -translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                         <p class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-1 lg:mb-2" data-i18n="menu_type_gule">Aneka Gule & Berkuah</p>
-                        <h3 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_3_title">Gule Kambing Spesial</h3>
+                        <h3 class="menu-card-title font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_3_title">Gule Kambing Spesial</h3>
                         <span class="inline-block px-3 py-1 bg-[#1A1A1A] border border-gray-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-md mb-3 self-start shadow-sm" data-i18n="menu_badge_recommended">Recommended</span>
                         <p class="menu-card-desc text-brand-cream/90 pb-1" data-i18n="menu_3_short">Kuah gule bersantan kental kaya rempah Nusantara, dimasak perlahan bersama potongan daging dan tulang.</p>
                         <p class="menu-card-feature text-brand-gold"><i class="fas fa-check-circle text-white opacity-80"></i> <span class="menu-card-feature-text" data-i18n="menu_3_char">Kuah medok, daging sangat mudah lepas dari tulang.</span></p>
-                        <div class="menu-card-detail-link flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
+                        <div class="menu-card-detail-link menu-card-cta flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
                     </div>
                 </div>
 
                 <!-- Menu 4 -->
-                <div class="reveal delay-100 relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500" onclick="openModal('assets/images/Gule-Kikil.png', 'menu_4_title', 'menu_4_desc', 'menu_4_extra')">
-                    <img loading="lazy" src="assets/images/Gule-Kikil.png" alt="Gule Kikil Kambing" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="reveal delay-100 reveal-3d card-3d relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl group cursor-pointer h-[280px] md:h-[320px] lg:h-[340px] transition-all duration-500" onclick="openModal('assets/images/Gule-Kikil.png', 'menu_4_title', 'menu_4_desc', 'menu_4_extra')">
+                    <img loading="lazy" src="assets/images/Gule-Kikil.png" alt="Gule Kikil Kambing" class="menu-card-image absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="menu-card-content absolute inset-0 p-6 lg:p-8 flex flex-col justify-center w-[95%] sm:w-[85%] transform -translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                         <p class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-1 lg:mb-2" data-i18n="menu_type_gule">Aneka Gule & Berkuah</p>
-                        <h3 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_4_title">Gule Kikil Kambing</h3>
+                        <h3 class="menu-card-title font-serif text-2xl lg:text-3xl font-bold text-white mb-3 drop-shadow-md" data-i18n="menu_4_title">Gule Kikil Kambing</h3>
                         <span class="inline-block px-3 py-1 bg-brand-brown text-white text-[10px] font-bold uppercase tracking-wider rounded-md mb-3 self-start shadow-sm" data-i18n="menu_badge_texture">Favorite Pecinta Tekstur</span>
                         <p class="menu-card-desc text-brand-cream/90 pb-1" data-i18n="menu_4_short">Tekstur kikil yang kenyal dan lembut berpadu sempurna dengan kuah gule rempah rahasia khas H. Faqih.</p>
                         <p class="menu-card-feature text-brand-gold"><i class="fas fa-check-circle text-white opacity-80"></i> <span class="menu-card-feature-text" data-i18n="menu_4_char">Kaya kolagen, lumer di mulut tanpa bau menyengat.</span></p>
-                        <div class="menu-card-detail-link flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
+                        <div class="menu-card-detail-link menu-card-cta flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-widest group-hover:text-brand-gold transition-colors"><i class="fas fa-search-plus text-base"></i> <span data-i18n="menu_detail_link">Klik untuk Detail</span></div>
                     </div>
                 </div>
             </div>
@@ -561,21 +565,21 @@
                 </p>
                 
                 <!-- Tombol Aplikasi Delivery -->
-                <div class="flex flex-wrap justify-center gap-4 relative z-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mt-6 relative z-10">
                     
-                    <a href="https://food.grab.com/id/id/restaurant/warung-sate-h-faqih-1-cukir-delivery/6-C2BXGKDANA2ER2" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_grabfood', { event_category: 'order', event_label: 'GrabFood' })" class="w-[190px] md:w-[210px] px-4 py-2.5 bg-gradient-to-r from-[#00B14F] to-[#009140] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(0,177,79,0.4)] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg">
-                        <img loading="lazy" src="assets/images/grabfood.png" alt="GrabFood" class="w-11 h-11 md:w-12 md:h-12 object-contain shrink-0">
-                        <span class="font-bold text-[15px] md:text-lg tracking-tight">GrabFood</span>
+                    <a href="https://food.grab.com/id/id/restaurant/warung-sate-h-faqih-1-cukir-delivery/6-C2BXGKDANA2ER2" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_grabfood', { event_category: 'order', event_label: 'GrabFood' })" class="order-btn cta-3d w-full min-w-0 px-4 py-3 bg-gradient-to-r from-[#00B14F] to-[#009140] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(0,177,79,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg whitespace-nowrap overflow-hidden">
+                        <img loading="lazy" src="assets/images/grabfood.png" alt="GrabFood" class="w-7 h-7 md:w-8 md:h-8 object-contain shrink-0">
+                        <span class="truncate font-bold text-[15px] md:text-lg tracking-tight">GrabFood</span>
                     </a>
 
-                    <a href="https://gofood.link/a/yXVsXZS" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_gofood', { event_category: 'order', event_label: 'GoFood' })" class="w-[190px] md:w-[210px] px-4 py-2.5 bg-gradient-to-r from-[#EE2737] to-[#D11C28] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,39,55,0.4)] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg">
-                        <img loading="lazy" src="assets/images/gofood.png" alt="GoFood" class="w-11 h-11 md:w-12 md:h-12 object-contain shrink-0">
-                        <span class="font-bold text-[15px] md:text-lg tracking-tight">GoFood</span>
+                    <a href="https://gofood.link/a/yXVsXZS" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_gofood', { event_category: 'order', event_label: 'GoFood' })" class="order-btn cta-3d w-full min-w-0 px-4 py-3 bg-gradient-to-r from-[#EE2737] to-[#D11C28] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,39,55,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg whitespace-nowrap overflow-hidden">
+                        <img loading="lazy" src="assets/images/gofood.png" alt="GoFood" class="w-7 h-7 md:w-8 md:h-8 object-contain shrink-0">
+                        <span class="truncate font-bold text-[15px] md:text-lg tracking-tight">GoFood</span>
                     </a>
 
-                    <a href="https://shopee.co.id/universal-link/now-food/shop/22797679" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_shopeefood', { event_category: 'order', event_label: 'ShopeeFood' })" class="w-[190px] md:w-[210px] px-4 py-2.5 bg-gradient-to-r from-[#EE4D2D] to-[#D13C1C] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,77,45,0.4)] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg">
-                        <img loading="lazy" src="assets/images/shopeefood.png" alt="ShopeeFood" class="w-11 h-11 md:w-12 md:h-12 object-contain shrink-0">
-                        <span class="font-bold text-[15px] md:text-lg tracking-tight">ShopeeFood</span>
+                    <a href="https://shopee.co.id/universal-link/now-food/shop/22797679" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_shopeefood', { event_category: 'order', event_label: 'ShopeeFood' })" class="order-btn cta-3d w-full min-w-0 px-4 py-3 bg-gradient-to-r from-[#EE4D2D] to-[#D13C1C] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,77,45,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg whitespace-nowrap overflow-hidden">
+                        <img loading="lazy" src="assets/images/shopeefood.png" alt="ShopeeFood" class="w-7 h-7 md:w-8 md:h-8 object-contain shrink-0">
+                        <span class="truncate font-bold text-[15px] md:text-lg tracking-tight">ShopeeFood</span>
                     </a>
 
                 </div>
@@ -584,7 +588,7 @@
     </section>
 
     <!-- History / Founder Section -->
-    <section id="history" class="py-16 lg:py-24 relative bg-brand-dark border-t-8 border-brand-orange overflow-hidden">
+    <section id="history" class="cinematic-history py-16 lg:py-24 relative bg-brand-dark border-t-8 border-brand-orange overflow-hidden">
         <div id="watermark-1950" class="absolute top-10 md:top-1/2 left-1/2 transform -translate-x-1/2 md:-translate-y-1/2 font-serif font-bold text-watermark pointer-events-none z-0 transition-transform duration-100 ease-out">
             1950
         </div>
@@ -598,7 +602,7 @@
             <div class="history-box mb-16 lg:mb-24 bg-white/5 backdrop-blur-sm border border-brand-gold/20 rounded-sm reveal">
                 <div class="history-layout">
                     <div class="history-left history-photo-wrap relative">
-                        <img loading="lazy" src="assets/images/Pendiri1.png" alt="Alm. H. Faqih" class="history-photo border-4 border-brand-gold/50 shadow-2xl">
+                        <img loading="lazy" src="assets/images/Pendiri1.png" alt="Alm. H. Faqih" class="history-photo image-depth scroll-depth border-4 border-brand-gold/50 shadow-2xl">
                         <div class="mt-3 inline-block bg-brand-gold text-brand-dark px-5 py-3 font-serif font-bold text-base sm:text-lg lg:text-xl shadow-lg lg:absolute lg:mt-0 lg:-bottom-6 lg:-right-6" data-i18n="founder_label">
                             Alm. H. Faqih
                         </div>
@@ -669,7 +673,7 @@
     </section>
 
   <!-- Galeri Foto Section -->
-<section id="guests" class="py-12 lg:py-16 bg-brand-light border-b border-brand-brown/10 relative overflow-hidden">
+<section id="guests" class="premium-gallery-section py-12 lg:py-16 bg-brand-light border-b border-brand-brown/10 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="mb-10 reveal">
             <span class="text-brand-orange font-medium tracking-widest text-sm uppercase" data-i18n="guest_subtitle">
@@ -701,7 +705,7 @@
                     <div class="gallery-track gallery-track-tokoh" data-gallery-track>
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH1.png', 'guest_1_name', 'guest_1_desc', 'guest_1_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH1.png" alt="KH. Mustofa Bisri menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH1.png" src="assets/images/TOKOH1.png" alt="KH. Mustofa Bisri menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -715,7 +719,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH2.png', 'guest_2_name', 'guest_2_desc', 'guest_2_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH2.png" alt="KH. Hasyim Muzadi menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH2.png" src="assets/images/TOKOH2.png" alt="KH. Hasyim Muzadi menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -729,7 +733,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH3.png', 'guest_3_name', 'guest_3_desc', 'guest_3_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH3.png" alt="KH. Ishaq Latief & KH. Ridho Amir beserta Istri menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH3.png" src="assets/images/TOKOH3.png" alt="KH. Ishaq Latief & KH. Ridho Amir beserta Istri menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -743,7 +747,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH4.png', 'guest_4_name', 'guest_4_desc', 'guest_4_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH4.png" alt="Gus Miftah menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH4.png" src="assets/images/TOKOH4.png" alt="Gus Miftah menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -757,7 +761,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH5.png', 'guest_5_name', 'guest_5_desc', 'guest_5_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH5.png" alt="Buya Husein Muhammad & Sahabat Gus Dur menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH5.png" src="assets/images/TOKOH5.png" alt="Buya Husein Muhammad & Sahabat Gus Dur menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -771,7 +775,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH6.png', 'guest_6_name', 'guest_6_desc', 'guest_6_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH6.png" alt="Anies Baswedan menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH6.png" src="assets/images/TOKOH6.png" alt="Anies Baswedan menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -785,7 +789,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH7.png', 'guest_7_name', 'guest_7_desc', 'guest_7_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH7.png" alt="Khofifah Indar Parawansa beserta Putra menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH7.png" src="assets/images/TOKOH7.png" alt="Khofifah Indar Parawansa beserta Putra menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -799,7 +803,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH8.png', 'guest_8_name', 'guest_8_desc', 'guest_8_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH8.png" alt="Dahlan Iskan beserta Istri menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH8.png" src="assets/images/TOKOH8.png" alt="Dahlan Iskan beserta Istri menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -813,7 +817,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH9.png', 'guest_9_name', 'guest_9_desc', 'guest_9_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH9.png" alt="Muhaimin Iskandar / Cak Imin menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH9.png" src="assets/images/TOKOH9.png" alt="Muhaimin Iskandar / Cak Imin menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -827,7 +831,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH10.png', 'guest_10_name', 'guest_10_desc', 'guest_10_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH10.png" alt="Mahfud MD menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH10.png" src="assets/images/TOKOH10.png" alt="Mahfud MD menikmati sate" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -841,7 +845,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/TOKOH11.png', 'guest_11_name', 'guest_11_desc', 'guest_11_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/TOKOH11.png" alt="Jenderal Pol. Timur Pradopo beserta Rombongan" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/TOKOH11.png" src="assets/images/TOKOH11.png" alt="Jenderal Pol. Timur Pradopo beserta Rombongan" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -873,7 +877,7 @@
                     <div class="gallery-track gallery-track-pengunjung" data-gallery-track>
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/pelanggan1.png', 'visitor_1_name', 'visitor_1_desc', 'visitor_1_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/pelanggan1.png" alt="Keluarga makan bersama di warung" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/pelanggan1.png" src="assets/images/pelanggan1.png" alt="Keluarga makan bersama di warung" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -887,7 +891,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/pelanggan2.png', 'visitor_2_name', 'visitor_2_desc', 'visitor_2_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/pelanggan2.png" alt="Rombongan Pelanggan" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/pelanggan2.png" src="assets/images/pelanggan2.png" alt="Rombongan Pelanggan" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -901,7 +905,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/pelanggan3.png', 'visitor_3_name', 'visitor_3_desc', 'visitor_3_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/pelanggan3.png" alt="Makan Bersama Keluarga" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/pelanggan3.png" src="assets/images/pelanggan3.png" alt="Makan Bersama Keluarga" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -915,7 +919,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/pelanggan4.png', 'visitor_4_name', 'visitor_4_desc', 'visitor_4_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/pelanggan4.png" alt="Pelanggan Setia" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/pelanggan4.png" src="assets/images/pelanggan4.png" alt="Pelanggan Setia" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -929,7 +933,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/pelanggan5.png', 'visitor_5_name', 'visitor_5_desc', 'visitor_5_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/pelanggan5.png" alt="Makan Bersama Keluarga" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/pelanggan5.png" src="assets/images/pelanggan5.png" alt="Makan Bersama Keluarga" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -943,7 +947,7 @@
 
                     <div class="gallery-card rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer img-container group" onclick="openModal('assets/images/pelanggan6.png', 'visitor_6_name', 'visitor_6_desc', 'visitor_6_caption')">
                         <div class="gallery-card-image overflow-hidden relative bg-brand-cream">
-                            <img loading="lazy" src="assets/images/pelanggan6.png" alt="Singgah dan Bernostalgia" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
+                            <img loading="eager" data-gallery-src="assets/images/pelanggan6.png" src="assets/images/pelanggan6.png" alt="Singgah dan Bernostalgia" onerror="this.onerror=null; this.src='assets/images/Warung.png';" class="w-full h-full object-cover object-center zoom-hover">
                             <div class="absolute inset-0 bg-brand-dark/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-search-plus text-white text-4xl drop-shadow-lg"></i>
                             </div>
@@ -961,7 +965,7 @@
     </div>
 </section>
     <!-- Reviews Section -->
-    <section id="reviews" class="py-12 lg:py-16 bg-brand-cream border-b border-brand-gold/10 overflow-hidden">
+    <section id="reviews" class="premium-reviews-section py-12 lg:py-16 bg-brand-cream border-b border-brand-gold/10 overflow-hidden">
         <div class="w-full px-4 sm:px-8 lg:px-16 xl:px-24">
             <div class="text-center mb-8 reveal">
                 <div class="flex justify-center items-center text-brand-gold mb-2 text-3xl">
@@ -971,7 +975,7 @@
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-2" data-i18n="review_title">Kata Mereka Tentang Kami</h2>
                 <p class="text-gray-600 mb-8" data-i18n="review_subtitle">Berdasarkan lebih dari 700+ ulasan otentik pelanggan di Google Maps.</p>
                 
-                <a href="https://maps.app.goo.gl/7ckUtFgsHXxk6HTP6" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_maps', { event_category: 'location', event_label: 'Google Maps' })" class="inline-flex items-center space-x-3 border border-gray-300 bg-white px-8 py-4 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <a href="https://maps.app.goo.gl/7ckUtFgsHXxk6HTP6" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_maps', { event_category: 'location', event_label: 'Google Maps' })" class="cta-3d inline-flex items-center space-x-3 border border-gray-300 bg-white px-8 py-4 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                     <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6">
                     <span class="font-medium text-brand-dark" data-i18n="review_btn">Lihat Semua Ulasan di Google Maps</span>
                 </a>
@@ -1094,7 +1098,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-12 lg:py-16 bg-[#FDFBF7] relative border-b border-brand-gold/10">
+    <section id="faq" class="premium-faq-section py-12 lg:py-16 bg-[#FDFBF7] relative border-b border-brand-gold/10">
         <div class="w-full px-4 sm:px-8 lg:px-16 xl:px-24">
             <div class="text-center mb-12 reveal">
                 <span class="text-brand-orange font-medium tracking-widest text-sm uppercase" data-i18n="faq_subtitle">Informasi Pelanggan</span>
@@ -1143,7 +1147,7 @@
     </section>
 
     <!-- Location & Order Online -->
-    <section id="location" class="py-12 lg:py-16 bg-brand-dark text-white relative">
+    <section id="location" class="premium-location-section py-12 lg:py-16 bg-brand-dark text-white relative">
         <div class="w-full px-4 sm:px-8 lg:px-16 xl:px-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
                 
@@ -1157,7 +1161,7 @@
                         </iframe>
                         
                         <!-- Floating Map Button -->
-                        <a href="https://maps.app.goo.gl/7ckUtFgsHXxk6HTP6" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_maps', { event_category: 'location', event_label: 'Google Maps' })" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-6 bg-white text-brand-dark px-5 py-3 rounded-full shadow-xl font-bold text-sm hover:bg-brand-orange hover:text-white transition-all duration-300 z-10 flex items-center gap-2 group-hover:-translate-y-2 hover:scale-105 cursor-pointer">
+                        <a href="https://maps.app.goo.gl/7ckUtFgsHXxk6HTP6" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_maps', { event_category: 'location', event_label: 'Google Maps' })" class="cta-3d absolute bottom-6 left-1/2 transform -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-6 bg-white text-brand-dark px-5 py-3 rounded-full shadow-xl font-bold text-sm hover:bg-brand-orange hover:text-white transition-all duration-300 z-10 flex items-center gap-2 group-hover:-translate-y-2 hover:scale-105 cursor-pointer">
                             <i class="fas fa-map-marker-alt text-brand-orange group-hover:text-white transition-colors"></i> <span data-i18n="loc_btn_map">Buka Rute di Google Maps</span>
                         </a>
                     </div>
@@ -1196,20 +1200,20 @@
                         </h4>
                         <p class="text-brand-cream/80 mb-8 text-base leading-relaxed relative z-10" data-i18n="order_subtitle">Pilih platform pengiriman favorit Anda untuk memesan, atau hubungi kami langsung melalui WhatsApp.</p>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 relative z-10">
-<a href="https://food.grab.com/id/id/restaurant/warung-sate-h-faqih-1-cukir-delivery/6-C2BXGKDANA2ER2" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_grabfood', { event_category: 'order', event_label: 'GrabFood' })" class="col-span-1 px-3 md:px-4 py-2.5 bg-gradient-to-r from-[#00B14F] to-[#009140] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(0,177,79,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
-    <img loading="lazy" src="assets/images/grabfood.png" alt="GrabFood" class="w-11 h-11 md:w-12 md:h-12 object-contain shrink-0">
-    <span class="font-bold text-[15px] md:text-lg tracking-tight">GrabFood</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mt-6 relative z-10">
+<a href="https://food.grab.com/id/id/restaurant/warung-sate-h-faqih-1-cukir-delivery/6-C2BXGKDANA2ER2" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_grabfood', { event_category: 'order', event_label: 'GrabFood' })" class="order-btn col-span-1 w-full min-w-0 px-4 py-3 bg-gradient-to-r from-[#00B14F] to-[#009140] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(0,177,79,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg whitespace-nowrap overflow-hidden">
+    <img loading="lazy" src="assets/images/grabfood.png" alt="GrabFood" class="w-7 h-7 md:w-8 md:h-8 object-contain shrink-0">
+    <span class="truncate font-bold text-[15px] md:text-lg tracking-tight">GrabFood</span>
 </a>
 
-<a href="https://gofood.link/a/yXVsXZS" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_gofood', { event_category: 'order', event_label: 'GoFood' })" class="col-span-1 px-3 md:px-4 py-2.5 bg-gradient-to-r from-[#EE2737] to-[#D11C28] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,39,55,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
-    <img loading="lazy" src="assets/images/gofood.png" alt="GoFood" class="w-11 h-11 md:w-12 md:h-12 object-contain shrink-0">
-    <span class="font-bold text-[15px] md:text-lg tracking-tight">GoFood</span>
+<a href="https://gofood.link/a/yXVsXZS" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_gofood', { event_category: 'order', event_label: 'GoFood' })" class="order-btn col-span-1 w-full min-w-0 px-4 py-3 bg-gradient-to-r from-[#EE2737] to-[#D11C28] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,39,55,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg whitespace-nowrap overflow-hidden">
+    <img loading="lazy" src="assets/images/gofood.png" alt="GoFood" class="w-7 h-7 md:w-8 md:h-8 object-contain shrink-0">
+    <span class="truncate font-bold text-[15px] md:text-lg tracking-tight">GoFood</span>
 </a>
 
-<a href="https://shopee.co.id/universal-link/now-food/shop/22797679" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_shopeefood', { event_category: 'order', event_label: 'ShopeeFood' })" class="col-span-1 px-3 md:px-4 py-2.5 bg-gradient-to-r from-[#EE4D2D] to-[#D13C1C] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,77,45,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
-    <img loading="lazy" src="assets/images/shopeefood.png" alt="ShopeeFood" class="w-11 h-11 md:w-12 md:h-12 object-contain shrink-0">
-    <span class="font-bold text-[15px] md:text-lg tracking-tight">ShopeeFood</span>
+<a href="https://shopee.co.id/universal-link/now-food/shop/22797679" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_shopeefood', { event_category: 'order', event_label: 'ShopeeFood' })" class="order-btn col-span-1 w-full min-w-0 px-4 py-3 bg-gradient-to-r from-[#EE4D2D] to-[#D13C1C] text-white rounded-xl hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(238,77,45,0.4)] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg whitespace-nowrap overflow-hidden">
+    <img loading="lazy" src="assets/images/shopeefood.png" alt="ShopeeFood" class="w-7 h-7 md:w-8 md:h-8 object-contain shrink-0">
+    <span class="truncate font-bold text-[15px] md:text-lg tracking-tight">ShopeeFood</span>
 </a>
                         </div>
                     </div>
@@ -1341,7 +1345,7 @@
     </div>
 </footer>
     <!-- Back To Top Button -->
-    <button id="backToTop" class="fixed bottom-[115px] md:bottom-[130px] right-6 md:right-10 z-40 bg-brand-gold text-brand-dark w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-brand-orange hover:text-white transition-all duration-300 opacity-0 translate-y-10 pointer-events-none" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Kembali ke atas">
+    <button id="backToTop" class="cta-3d fixed bottom-[115px] md:bottom-[130px] right-6 md:right-10 z-40 bg-brand-gold text-brand-dark w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-brand-orange hover:text-white transition-all duration-300 opacity-0 translate-y-10 pointer-events-none" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Kembali ke atas">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -1350,7 +1354,7 @@
         <div class="bg-white text-gray-700 px-4 py-2 rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.15)] font-medium text-sm md:text-base border border-gray-100 opacity-0 translate-x-4 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 relative after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:-right-[6px] after:border-t-[6px] after:border-t-transparent after:border-b-[6px] after:border-b-transparent after:border-l-[6px] after:border-l-white whitespace-nowrap" data-i18n="wa_floating_tooltip">
             Chat WhatsApp
         </div>
-        <a href="https://wa.me/6281233912015" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'Tombol WhatsApp' })" class="w-14 h-14 bg-gradient-to-tr from-[#128C7E] to-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:scale-110 transition-transform" aria-label="Chat WhatsApp">
+        <a href="https://wa.me/6281233912015" target="_blank" rel="noopener noreferrer" onclick="trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'Tombol WhatsApp' })" class="cta-3d w-14 h-14 bg-gradient-to-tr from-[#128C7E] to-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:scale-110 transition-transform" aria-label="Chat WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>

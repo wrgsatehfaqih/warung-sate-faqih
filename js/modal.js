@@ -16,6 +16,9 @@ function openModal(imageSrc, titleKey, descKey, extraKey) {
     if (dialog) {
         dialog.classList.toggle('gallery-modal-content', isGalleryModal);
         dialog.classList.toggle('menu-modal-content', isMenuModal);
+        dialog.classList.remove('modal-3d');
+        void dialog.offsetWidth;
+        dialog.classList.add('modal-3d');
     }
     
     if (imageWrapper) {
@@ -24,16 +27,23 @@ function openModal(imageSrc, titleKey, descKey, extraKey) {
     }
 
     if (img) {
+        img.loading = 'eager';
+        img.decoding = 'async';
         img.src = imageSrc;
         img.classList.toggle('gallery-modal-image', isGalleryModal);
         img.classList.toggle('menu-modal-image', isMenuModal);
         img.classList.remove('object-contain', 'object-cover');
+        if (img.complete && img.naturalWidth === 0) {
+            img.dispatchEvent(new Event('error'));
+        }
     }
     if (desc) {
         desc.closest('#modal-content')?.classList.toggle('gallery-modal-text', isGalleryModal);
         desc.closest('#modal-content')?.classList.toggle('menu-modal-text', isMenuModal);
     }
     if (title) {
+        title.classList.toggle('gallery-modal-title', isGalleryModal);
+        title.classList.toggle('menu-modal-title', isMenuModal);
         title.setAttribute('data-i18n', titleKey);
         title.textContent = langDict[titleKey] || '';
     }
@@ -47,10 +57,14 @@ function openModal(imageSrc, titleKey, descKey, extraKey) {
         role.classList.toggle('hidden', !role.textContent.trim());
     }
     if (desc) {
+        desc.classList.toggle('gallery-modal-desc', isGalleryModal);
+        desc.classList.toggle('menu-modal-desc', isMenuModal);
         desc.setAttribute('data-i18n', descKey);
         desc.textContent = langDict[descKey] || '';
     }
     if (extra) {
+        extra.classList.toggle('gallery-modal-quote', isGalleryModal);
+        extra.classList.toggle('menu-modal-quote', isMenuModal);
         if (extraKey) {
             extra.setAttribute('data-i18n', extraKey);
         } else {
@@ -64,6 +78,7 @@ function openModal(imageSrc, titleKey, descKey, extraKey) {
         modal.classList.remove('hidden');
         setTimeout(() => {
             modal.classList.remove('opacity-0');
+            window.handleResponsiveRefresh?.();
         }, 10);
     }
     // Prevent scrolling on body

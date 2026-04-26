@@ -2257,7 +2257,7 @@ body.is-resizing .gallery-track {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
     .hero-section {
         min-height: 100svh;
     }
@@ -2268,12 +2268,91 @@ body.is-resizing .gallery-track {
     }
 
     .premium-menu-section .card-3d {
-        height: 310px;
+        height: 290px;
+    }
+
+    .premium-menu-section .card-3d,
+    .premium-menu-section .card-3d * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .premium-menu-section .card-3d {
+        cursor: pointer;
+    }
+
+    .premium-menu-section .card-3d::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(20, 12, 8, 0.78) 0%,
+            rgba(20, 12, 8, 0.50) 24%,
+            rgba(20, 12, 8, 0.10) 58%,
+            rgba(20, 12, 8, 0.00) 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .premium-menu-section .menu-card-image {
+        z-index: 0;
+        transform: scale(1.01);
     }
 
     .premium-menu-section .menu-card-content {
+        z-index: 2;
         width: 100%;
-        padding: 1.25rem;
+        padding: 1rem 1rem 1rem;
+        justify-content: flex-end;
+        align-items: flex-start;
+        background: transparent;
+        opacity: 1;
+        transform: none;
+        pointer-events: none;
+    }
+
+    .premium-menu-section .menu-card-title {
+        font-size: 1.55rem;
+        line-height: 1.08;
+        margin-bottom: 0.45rem;
+    }
+
+    .premium-menu-section .menu-card-desc,
+    .premium-menu-section .menu-card-feature,
+    .premium-menu-section .menu-card-feature-text,
+    .premium-menu-section .menu-card-detail-link .fa-search-plus {
+        display: none;
+    }
+
+    .premium-menu-section .menu-card-detail-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.92rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 0.4rem;
+        padding: 0.45rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(212, 175, 55, 0.96);
+        color: #2a1a14;
+        white-space: nowrap;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .premium-menu-section .menu-card-cta {
+        margin-top: 0.35rem;
+        width: fit-content;
+        line-height: 1.2;
+    }
+
+    .premium-menu-section .menu-card-badge,
+    .premium-menu-section .menu-card-content .inline-block {
+        font-size: 0.68rem;
+        padding: 0.3rem 0.6rem;
+        margin-bottom: 0.4rem;
     }
 
     .menu-modal-content,
@@ -2676,5 +2755,141 @@ body.is-resizing .gallery-track {
     .hero-card.glass-3d {
         width: min(46vw, 500px);
         max-width: 500px;
+    }
+}
+
+@media (min-width: 980px) and (max-width: 1180px) and (hover: none) and (pointer: coarse) and (max-device-width: 767px) {
+    #main-header,
+    #navbar {
+        min-height: 88px;
+    }
+
+    #navbar > div {
+        padding-inline: 26px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    #navbar > div.lg\:hidden {
+        min-height: 88px;
+        height: auto;
+    }
+
+    #mobile-menu-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 1.6rem;
+        padding: 0.5rem;
+    }
+
+    #nav-logo-mob,
+    #nav-logo {
+        height: 58px;
+        max-height: 58px;
+        width: auto;
+    }
+
+    .language-toggle.language-switcher {
+        transform: scale(1.15);
+        transform-origin: center;
+    }
+
+    .language-toggle.language-switcher .language-btn {
+        font-size: 1rem;
+        min-width: 54px;
+        min-height: 42px;
+        padding: 10px 18px;
+    }
+
+    #mobile-menu {
+        font-size: 1.05rem;
+    }
+
+    #mobile-menu .mobile-link {
+        font-size: 1.05rem;
+        letter-spacing: 0.18em;
+    }
+
+    .hero-content {
+        align-items: center;
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    .hero-content-inner {
+        padding-inline: 34px;
+    }
+
+    .hero-card.glass-3d {
+        width: min(42vw, 430px);
+        max-width: 430px;
+        padding: 24px 26px;
+        border-radius: 26px;
+        background: rgba(28, 17, 11, 0.56);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.20);
+    }
+
+    .hero-badge {
+        font-size: 0.9rem;
+        letter-spacing: 0.16em;
+        margin-bottom: 0.8rem;
+        line-height: 1.35;
+    }
+
+    .hero-title {
+        font-size: clamp(3.5rem, 5vw, 4.6rem);
+        line-height: 0.95;
+        margin-bottom: 0.12rem;
+    }
+
+    .hero-title-sub {
+        font-size: clamp(2.6rem, 4.2vw, 3.5rem);
+        line-height: 0.98;
+        margin-top: 0.35rem;
+        margin-bottom: 0.95rem;
+    }
+
+    .hero-description {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        max-width: 100%;
+    }
+
+    .slider-dots,
+    .hero-dots {
+        bottom: 28px;
+    }
+
+    .slider-dot,
+    .hero-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    #backToTop {
+        width: 56px;
+        height: 56px;
+        right: 22px;
+        bottom: 118px;
+        font-size: 1.15rem;
+    }
+
+    .fixed.bottom-8.md\:bottom-12.right-6.md\:right-10 {
+        right: 22px;
+        bottom: 26px;
+        gap: 14px;
+    }
+
+    .fixed.bottom-8.md\:bottom-12.right-6.md\:right-10 > a[href^="https://wa.me/"] {
+        width: 64px;
+        height: 64px;
+        font-size: 1.9rem;
+    }
+
+    .fixed.bottom-8.md\:bottom-12.right-6.md\:right-10 > div {
+        font-size: 0.95rem;
+        padding: 0.7rem 1rem;
     }
 }

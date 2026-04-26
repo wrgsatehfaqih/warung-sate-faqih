@@ -8,8 +8,14 @@ const dict = {
         nav_about: "Tentang", nav_menu: "Menu", nav_history: "Sejarah", nav_guests: "Galeri Foto", nav_reviews: "Review", nav_faq: "FAQ", nav_location: "Lokasi",
         
         hero_badge_0: "Warisan Lintas Generasi", hero_title_0_main: "Warung Sate", hero_title_0_sub: "H. Faqih 1", hero_sub_0: "Legendaris sejak 1950. Lebih dari sekadar kelezatan sate, ini adalah saksi bisu kebersamaan, nostalgia, dan cerita keluarga Anda.",
+        hero_sub_0_mobile: "Legendaris sejak 1950. Saksi cita rasa, kebersamaan, dan nostalgia lintas generasi.",
+        hero_sub_0_tablet: "Legendaris sejak 1950. Tempat sederhana dengan cita rasa, kebersamaan, dan nostalgia lintas generasi.",
         hero_badge_1: "Cita Rasa Autentik", hero_title_1_main: "Sate Kambing", hero_title_1_sub: "Legendaris", hero_sub_1: "Sate kambing  yang dibakar hingga matang sempurna, disajikan dengan siraman bumbu kacang/kecap yang gurih, taburan bawang merah segar, dan sambal pedas sebagai pelengkap. Perpaduan daging empuk, aroma bakaran arang, dan bumbu khas menghadirkan cita rasa sate yang autentik.",
+        hero_sub_1_mobile: "Sate kambing empuk dengan bumbu gurih, aroma arang, bawang merah, dan sambal pedas.",
+        hero_sub_1_tablet: "Sate kambing empuk dengan bumbu gurih, aroma bakaran arang, bawang merah segar, dan sambal pedas.",
         hero_badge_2: "Kuah Medok Kaya Rempah", hero_title_2_main: "Gule Kambing", hero_title_2_sub: "Spesial", hero_sub_2: "Dimasak perlahan berjam-jam menghasilkan daging super empuk dengan kuah rempah Nusantara yang kental dan menghangatkan.",
+        hero_sub_2_mobile: "Gule kambing empuk dengan kuah rempah Nusantara yang hangat dan kaya rasa.",
+        hero_sub_2_tablet: "Dimasak perlahan hingga empuk, dengan kuah rempah Nusantara yang hangat, kental, dan kaya rasa.",
         
         nostalgia_title: "Ruang Memori Lintas Generasi",
         nostalgia_desc: "Warung Sate H. Faqih 1 bukanlah sekadar tempat singgah untuk bersantap. Di sini, meja dan kursi kami menjadi saksi bisu dari kakek yang mengenalkan rasa otentik kepada cucunya, hingga para <span class='font-bold text-brand-orange'>santri, warga sekitar, keluarga, dan pendatang</span> yang selalu kembali karena rindu pada cita rasa khas Cukir. Setiap kepulan asap sate membawa kehangatan cerita, kebersamaan, dan silaturahmi yang tak pernah putus sejak 1950.",
@@ -101,8 +107,14 @@ const dict = {
         nav_about: "About", nav_menu: "Menu", nav_history: "History", nav_guests: "Photo Gallery", nav_reviews: "Reviews", nav_faq: "FAQ", nav_location: "Location",
         
         hero_badge_0: "Cross-Generation Heritage", hero_title_0_main: "Warung Sate", hero_title_0_sub: "H. Faqih 1", hero_sub_0: "Legendary since 1950. More than just delicious satay, it has silently witnessed togetherness, nostalgia, and your family stories.",
+        hero_sub_0_mobile: "Legendary since 1950. A place of flavor, togetherness, and memories across generations.",
+        hero_sub_0_tablet: "Legendary since 1950. A humble place filled with flavor, togetherness, and memories across generations.",
         hero_badge_1: "Authentic Taste", hero_title_1_main: "Mutton Satay", hero_title_1_sub: "Legendary", hero_sub_1: "Goat satay, grilled to perfection, is served with a savory peanut or soy sauce glaze, topped with fresh red onions, and accompanied by spicy sambal. The combination of tender meat, the aroma of charcoal grilling, and signature seasonings delivers an authentic satay flavor.",
+        hero_sub_1_mobile: "Tender goat satay with savory sauce, smoky aroma, shallots, and spicy sambal.",
+        hero_sub_1_tablet: "Tender goat satay with savory sauce, smoky charcoal aroma, fresh shallots, and spicy sambal.",
         hero_badge_2: "Rich & Flavorful Broth", hero_title_2_main: "Mutton Curry", hero_title_2_sub: "Special", hero_sub_2: "Slow-cooked for hours resulting in super tender meat with a thick, heartwarming Indonesian spice broth.",
+        hero_sub_2_mobile: "Tender goat curry with warm, rich Indonesian spiced broth.",
+        hero_sub_2_tablet: "Slow-cooked until tender, with warm, rich, and flavorful Indonesian spiced broth.",
         
         nostalgia_title: "A Room of Cross-Generational Memories",
         nostalgia_desc: "Warung Sate H. Faqih 1 is more than just a place to stop and dine. Here, our tables and chairs have silently witnessed grandparents introducing authentic flavors to their grandchildren, as well as <span class='font-bold text-brand-orange'>students, local residents, families, and visitors</span> who keep coming back for the distinctive taste of Cukir. Every wisp of satay smoke carries warmth, stories, togetherness, and bonds that have never faded since 1950.",

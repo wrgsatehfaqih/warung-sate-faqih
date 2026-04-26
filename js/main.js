@@ -1,17 +1,40 @@
 // Typewriter Effect Logic
 let i = 0;
 let typingTimer;
+
+function isHeroMobileViewport() {
+    return window.innerWidth <= 640;
+}
+
+function isHeroTabletPortraitViewport() {
+    return window.matchMedia('(min-width: 641px) and (max-width: 1024px) and (orientation: portrait)').matches;
+}
+
+function getHeroSubtitleKey(index) {
+    if (isHeroMobileViewport()) return `hero_sub_${index}_mobile`;
+    if (isHeroTabletPortraitViewport()) return `hero_sub_${index}_tablet`;
+    return `hero_sub_${index}`;
+}
+
+function updateHeroSlideCopy() {
+    if (typeof dict === 'undefined' || !dict[currentLang]) return;
+
+    document.querySelectorAll('.hero-slide').forEach((slide, index) => {
+        const badgeEl = slide.querySelector('.hero-badge');
+        const subTitleEl = slide.querySelector('.hero-title-sub');
+        const subDescEl = slide.querySelector('.hero-description');
+
+        if (badgeEl) badgeEl.textContent = dict[currentLang][`hero_badge_${index}`] || '';
+        if (subTitleEl) subTitleEl.textContent = dict[currentLang][`hero_title_${index}_sub`] || '';
+        if (subDescEl) subDescEl.textContent = dict[currentLang][getHeroSubtitleKey(index)] || dict[currentLang][`hero_sub_${index}`] || '';
+    });
+}
+
 function typeWriter() {
     const mainTitleEl = document.getElementById('hero-title-main');
-    const subTitleEl = document.getElementById('hero-title-sub');
-    const badgeEl = document.getElementById('hero-badge');
-    const subDescEl = document.getElementById('hero-sub');
     
-    // Update texts based on slide and lang
     if (typeof dict !== 'undefined' && dict[currentLang]) {
-        if(badgeEl) badgeEl.textContent = dict[currentLang][`hero_badge_${currentSlide}`] || '';
-        if(subTitleEl) subTitleEl.textContent = dict[currentLang][`hero_title_${currentSlide}_sub`] || '';
-        if(subDescEl) subDescEl.textContent = dict[currentLang][`hero_sub_${currentSlide}`] || '';
+        updateHeroSlideCopy();
         
         const fullText = dict[currentLang][`hero_title_${currentSlide}_main`] || '';
         
@@ -305,6 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         requestScrollDepthUpdate();
         requestActiveNavUpdate();
         updateNavbarState();
+        updateHeroSlideCopy();
 
         window.requestAnimationFrame(() => {
             document.body.classList.remove('is-resizing');

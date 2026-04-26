@@ -18,7 +18,7 @@ section[id] {
     z-index: 60;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
     .mobile-link {
         white-space: normal;
         text-align: center;
@@ -105,7 +105,7 @@ section[id] {
         max-width: 100%;
     }
 }
-@media (max-width: 640px) {
+@media (max-width: 767px) {
     .history-section-container {
         width: calc(100% - 24px);
     }
@@ -171,7 +171,7 @@ section[id] {
     line-height: 1.75;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
     .faq-question {
         font-size: 1.05rem;
         line-height: 1.35;
@@ -2444,7 +2444,7 @@ body.is-resizing .gallery-track {
 }
 
 /* Final mobile overrides for hero visibility and history readability. */
-@media (max-width: 640px) {
+@media (max-width: 767px) {
     .hero-section {
         min-height: max(100svh, 660px);
     }
@@ -2594,7 +2594,7 @@ body.is-resizing .gallery-track {
     }
 }
 
-@media (min-width: 641px) and (max-width: 1024px) and (orientation: portrait) {
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
     .hero-section {
         min-height: 100svh;
     }

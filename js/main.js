@@ -3,11 +3,11 @@ let i = 0;
 let typingTimer;
 
 function isHeroMobileViewport() {
-    return window.innerWidth <= 640;
+    return window.innerWidth <= 767;
 }
 
 function isHeroTabletPortraitViewport() {
-    return window.matchMedia('(min-width: 641px) and (max-width: 1024px) and (orientation: portrait)').matches;
+    return window.matchMedia('(min-width: 768px) and (max-width: 1024px) and (orientation: portrait)').matches;
 }
 
 function getHeroSubtitleKey(index) {
